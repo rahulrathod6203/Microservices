@@ -24,7 +24,7 @@ public class StudentMapper {
                 .firstName(student.getFirstName())
                 .lastName(student.getLastName())
                 .email(student.getEmail())
-                .addressId(student.getId()).
+                .addressId(student.getAddressId()).
                 build();
     }
 }
