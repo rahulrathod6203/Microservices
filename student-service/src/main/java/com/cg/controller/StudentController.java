@@ -30,8 +30,8 @@ public class StudentController {
         StudentResponse student = studentService.createStudent(studentRequest);
 
         URI location = ServletUriComponentsBuilder
-                    .fromCurrentContextPath()
-                    .path("api/v1/student/{id}")
+                    .fromCurrentRequest()
+                    .path("/{id}")
                     .buildAndExpand(student.id())
                     .toUri();
 

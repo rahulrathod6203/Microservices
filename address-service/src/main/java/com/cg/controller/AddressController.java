@@ -24,8 +24,8 @@ public class AddressController {
         AddressResponse address = addressService.createAddress(addressRequest);
 
         URI location = ServletUriComponentsBuilder
-                    .fromCurrentContextPath()
-                    .path("api/v1/address/{id}")
+                    .fromCurrentRequest()
+                    .path("/{id}")
                     .buildAndExpand(address.id())
                     .toUri();
 
