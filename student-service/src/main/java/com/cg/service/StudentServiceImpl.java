@@ -2,6 +2,8 @@ package com.cg.service;
 
 import com.cg.dto.StudentRequest;
 import com.cg.dto.StudentResponse;
+import com.cg.mapper.StudentMapper;
+import com.cg.model.Student;
 import com.cg.repository.StudentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,14 +16,20 @@ public class StudentServiceImpl implements StudentService{
 
     private final StudentRepository studentRepository;
 
+    private final StudentMapper mapper;
+
     @Override
     public StudentResponse createStudent(StudentRequest studentRequest) {
-        return null;
+
+        Student student = mapper.toEntity(studentRequest);
+        Student savedStudent = studentRepository.save(student);
+
+        return mapper.toResponse(savedStudent);
     }
 
     @Override
     public List<StudentResponse> getAllStudents() {
-        return List.of();
+        return studentRepository.findAll().stream().map(mapper::toResponse).toList();
     }
 
     @Override
