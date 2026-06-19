@@ -2,6 +2,7 @@ package com.cg.service;
 
 import com.cg.dto.StudentRequest;
 import com.cg.dto.StudentResponse;
+import com.cg.exception.StudentNotFoundException;
 import com.cg.mapper.StudentMapper;
 import com.cg.model.Student;
 import com.cg.repository.StudentRepository;
@@ -36,13 +37,13 @@ public class StudentServiceImpl implements StudentService{
     public StudentResponse getStudentById(Long id) {
         return studentRepository.findById(id)
                 .map(mapper::toResponse)
-                .orElseThrow(() -> new RuntimeException("Student not found with id - "+id));
+                .orElseThrow(() -> new StudentNotFoundException("Student not found with id="+id));
     }
 
     @Override
     public StudentResponse updateStudent(Long id, StudentRequest studentRequest) {
         Student student = studentRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Student not found with id - " + id));
+                .orElseThrow(() -> new StudentNotFoundException("Student not found with id=" + id));
 
         student.setFirstName(studentRequest.firstName());
         student.setLastName(studentRequest.lastName());
@@ -57,7 +58,7 @@ public class StudentServiceImpl implements StudentService{
     @Override
     public String deleteStudent(Long id) {
         studentRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Student not found with id - "+id));
+                .orElseThrow(() -> new StudentNotFoundException("Student not found with id="+id));
 
         studentRepository.deleteById(id);
         return "Student with id="+id + " deleted successfully!";
