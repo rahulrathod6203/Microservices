@@ -34,16 +34,32 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public StudentResponse getStudentById(Long id) {
-        return null;
+        return studentRepository.findById(id)
+                .map(mapper::toResponse)
+                .orElseThrow(() -> new RuntimeException("Student not found with id - "+id));
     }
 
     @Override
     public StudentResponse updateStudent(Long id, StudentRequest studentRequest) {
-        return null;
+        Student student = studentRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Student not found with id - " + id));
+
+        student.setFirstName(studentRequest.firstName());
+        student.setLastName(studentRequest.lastName());
+        student.setEmail(studentRequest.email());
+        student.setAddressId(studentRequest.addressId());
+
+        Student updatedStudent = studentRepository.save(student);
+
+        return mapper.toResponse(updatedStudent);
     }
 
     @Override
     public String deleteStudent(Long id) {
-        return "";
+        studentRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Student not found with id - "+id));
+
+        studentRepository.deleteById(id);
+        return "Student with id - "+ id + "deleted successfully!";
     }
 }

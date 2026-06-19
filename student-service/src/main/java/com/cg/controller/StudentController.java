@@ -2,6 +2,7 @@ package com.cg.controller;
 
 import com.cg.dto.StudentRequest;
 import com.cg.dto.StudentResponse;
+import com.cg.model.Student;
 import com.cg.service.StudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -42,4 +43,23 @@ public class StudentController {
         List<StudentResponse> allStudents = studentService.getAllStudents();
         return ResponseEntity.ok(allStudents);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<StudentResponse> getStudentById(@PathVariable Long id) {
+        StudentResponse studentById = studentService.getStudentById(id);
+        return ResponseEntity.ok(studentById);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<StudentResponse> updateStudent(@PathVariable Long id, @RequestBody StudentRequest studentRequest) {
+        StudentResponse studentResponse = studentService.updateStudent(id, studentRequest);
+        return ResponseEntity.accepted().body(studentResponse);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteStudent( @PathVariable Long id) {
+        return studentService.deleteStudent(id);
+    }
+
+
 }
