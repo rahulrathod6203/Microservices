@@ -60,6 +60,6 @@ public class StudentServiceImpl implements StudentService{
                 .orElseThrow(() -> new RuntimeException("Student not found with id - "+id));
 
         studentRepository.deleteById(id);
-        return "Student with id - "+ id + "deleted successfully!";
+        return "Student with id="+id + " deleted successfully!";
     }
 }
