@@ -1,7 +1,5 @@
 package com.cg.dto;
 
-import jakarta.persistence.Column;
-
 public record AddressRequest(
 
 

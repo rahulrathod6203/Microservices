@@ -14,6 +14,8 @@ public record AddressResponse(
 
         String pinCode,
 
-        String state
+        String state,
+
+        Long studentId
 ) {
 }

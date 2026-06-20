@@ -3,6 +3,7 @@ package com.cg.controller;
 import com.cg.dto.AddressRequest;
 import com.cg.dto.AddressResponse;
 import com.cg.service.AddressService;
+import jakarta.ws.rs.Path;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +20,9 @@ public class AddressController {
 
     private final AddressService addressService;
 
-    @PostMapping
-    public ResponseEntity<AddressResponse> createAddress(@RequestBody AddressRequest addressRequest) {
-        AddressResponse address = addressService.createAddress(addressRequest);
+    @PostMapping("/{studentId}")
+    public ResponseEntity<AddressResponse> createAddress(@PathVariable Long studentId, @RequestBody AddressRequest addressRequest) {
+        AddressResponse address = addressService.createAddress(studentId, addressRequest);
 
         URI location = ServletUriComponentsBuilder
                     .fromCurrentRequest()
