@@ -1,17 +1,15 @@
 package com.cg.service;
 
-import com.cg.dto.AddressRequest;
 import com.cg.dto.AddressResponse;
 import com.cg.dto.StudentRequest;
 import com.cg.dto.StudentResponse;
 import com.cg.exception.StudentNotFoundException;
-import com.cg.feignClients.AddressClient;
+import com.cg.feignClients.AddressFeignClient;
 import com.cg.mapper.StudentMapper;
 import com.cg.model.Student;
 import com.cg.repository.StudentRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +23,7 @@ public class StudentServiceImpl implements StudentService{
 
     private final StudentMapper mapper;
 
-    private final AddressClient addressClient;
+    private final AddressFeignClient addressFeignClient;
 
     @Override
     public StudentResponse createStudent(StudentRequest studentRequest) {
@@ -35,8 +33,9 @@ public class StudentServiceImpl implements StudentService{
         log.info("STUDENT created, {}",savedStudent.toString());
 
         log.info("Adding STUDENT address");
+
         AddressResponse addressResponse =
-                addressClient.createAddress(savedStudent.getId(), studentRequest.addressRequest()).getBody();
+                addressFeignClient.createAddress(savedStudent.getId(), studentRequest.addressRequest()).getBody();
         log.info("Student address added {}", addressResponse);
 
 //        return StudentResponse.builder()
@@ -61,8 +60,7 @@ public class StudentServiceImpl implements StudentService{
     public StudentResponse getStudentById(Long id) {
 
         // retrieve Address By id from address-service
-        AddressResponse addressById = addressClient.getAddressById(id).getBody();
-
+        AddressResponse addressById = addressFeignClient.getAddressById(id).getBody();
         return studentRepository.findById(id)
                 .map(student -> mapper.toResponse(student,addressById))
                 .orElseThrow(() -> new StudentNotFoundException("Student not found with id="+id));

@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(value = "ADDRESS-SERVICE", path = "/api/v1/address")
-public interface AddressClient {
+@FeignClient(name = "ADDRESS-SERVICE", path = "/api/v1/address")
+public interface AddressFeignClient {
 
     @PostMapping("/{studentId}")
     public ResponseEntity<AddressResponse> createAddress(@PathVariable Long studentId, @RequestBody AddressRequest addressRequest);
