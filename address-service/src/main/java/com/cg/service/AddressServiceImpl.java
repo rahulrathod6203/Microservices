@@ -20,9 +20,10 @@ public class AddressServiceImpl implements AddressService {
     private final AddressMapper mapper;
 
     @Override
-    public AddressResponse createAddress(AddressRequest addressRequest) {
+    public AddressResponse createAddress(Long studentId, AddressRequest addressRequest) {
 
         Address address = mapper.toEntity(addressRequest);
+        address.setStudentId(studentId);
         Address savedAddress = addressRepository.save(address);
 
         return mapper.toResponse(savedAddress);

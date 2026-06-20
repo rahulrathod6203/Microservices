@@ -1,5 +1,6 @@
 package com.cg.mapper;
 
+import com.cg.dto.AddressResponse;
 import com.cg.dto.StudentRequest;
 import com.cg.dto.StudentResponse;
 import com.cg.model.Student;
@@ -18,13 +19,13 @@ public class StudentMapper {
                .build();
     }
 
-    public StudentResponse toResponse(Student student){
+    public StudentResponse toResponse(Student student, AddressResponse addressResponse){
         return StudentResponse.builder()
                 .id(student.getId())
                 .firstName(student.getFirstName())
                 .lastName(student.getLastName())
-                .email(student.getEmail()).
-//                .addressId(student.getAddressId()).
-                build();
+                .email(student.getEmail())
+                .addressResponse(addressResponse)
+                .build();
     }
 }

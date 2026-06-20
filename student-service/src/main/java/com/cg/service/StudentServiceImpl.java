@@ -1,42 +1,70 @@
 package com.cg.service;
 
+import com.cg.dto.AddressRequest;
+import com.cg.dto.AddressResponse;
 import com.cg.dto.StudentRequest;
 import com.cg.dto.StudentResponse;
 import com.cg.exception.StudentNotFoundException;
+import com.cg.feignClients.AddressClient;
 import com.cg.mapper.StudentMapper;
 import com.cg.model.Student;
 import com.cg.repository.StudentRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class StudentServiceImpl implements StudentService{
 
     private final StudentRepository studentRepository;
 
     private final StudentMapper mapper;
 
+    private final AddressClient addressClient;
+
     @Override
     public StudentResponse createStudent(StudentRequest studentRequest) {
-
+        log.info("Creating STUDENT...");
         Student student = mapper.toEntity(studentRequest);
         Student savedStudent = studentRepository.save(student);
+        log.info("STUDENT created, {}",savedStudent.toString());
 
-        return mapper.toResponse(savedStudent);
+        log.info("Adding STUDENT address");
+        AddressResponse addressResponse =
+                addressClient.createAddress(savedStudent.getId(), studentRequest.addressRequest()).getBody();
+        log.info("Student address added {}", addressResponse);
+
+//        return StudentResponse.builder()
+//                .id(student.getId())
+//                .firstName(student.getFirstName())
+//                .lastName(student.getLastName())
+//                .email(student.getEmail())
+//                .addressResponse(addressResponse)
+//                .build();
+
+
+       return mapper.toResponse(savedStudent,addressResponse);
     }
 
     @Override
     public List<StudentResponse> getAllStudents() {
-        return studentRepository.findAll().stream().map(mapper::toResponse).toList();
+        return null;
+//        return studentRepository.findAll().stream().map(mapper::toResponse).toList();
     }
 
     @Override
     public StudentResponse getStudentById(Long id) {
+
+        // retrieve Address By id from address-service
+        AddressResponse addressById = addressClient.getAddressById(id).getBody();
+
         return studentRepository.findById(id)
-                .map(mapper::toResponse)
+                .map(student -> mapper.toResponse(student,addressById))
                 .orElseThrow(() -> new StudentNotFoundException("Student not found with id="+id));
     }
 
@@ -52,7 +80,8 @@ public class StudentServiceImpl implements StudentService{
 
         Student updatedStudent = studentRepository.save(student);
 
-        return mapper.toResponse(updatedStudent);
+        //return mapper.toResponse(updatedStudent);
+        return null;
     }
 
     @Override
@@ -63,4 +92,5 @@ public class StudentServiceImpl implements StudentService{
         studentRepository.deleteById(id);
         return "Student with id="+id + " deleted successfully!";
     }
+
 }

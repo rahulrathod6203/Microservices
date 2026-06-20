@@ -1,10 +1,12 @@
 package com.cg.model;
 
+import com.cg.dto.AddressResponse;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @Table(name = "students")
+@ToString
 @Getter
 @Setter
 @AllArgsConstructor
@@ -25,7 +27,7 @@ public class Student {
     @Column(name = "email", nullable = false)
     private String email;
 
-//    @Column(name = "address_id", nullable = false)
-//    private Long addressId;
+//    @Column(name = "address")
+//    AddressResponse addressResponse;
 
 }
