@@ -5,6 +5,7 @@ import com.cg.dto.AddressResponse;
 import com.cg.service.AddressService;
 import jakarta.ws.rs.Path;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -16,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/address")
 @AllArgsConstructor
+@Slf4j
 public class AddressController {
 
     private final AddressService addressService;
@@ -42,6 +44,7 @@ public class AddressController {
     @GetMapping("/{id}")
     public ResponseEntity<AddressResponse> getAddressById(@PathVariable Long id) {
         AddressResponse studentById = addressService.getAddressById(id);
+        log.info("GET request called...");
         return ResponseEntity.ok(studentById);
     }
 
