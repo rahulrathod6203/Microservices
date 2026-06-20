@@ -12,8 +12,8 @@ public record StudentResponse(
 
         String lastName,
 
-        String email,
+        String email
 
-        Long addressId
+        //Long addressId
 ) {
 }

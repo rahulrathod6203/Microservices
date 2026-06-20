@@ -14,7 +14,7 @@ public class StudentMapper {
                .firstName(request.firstName())
                .lastName(request.lastName())
                .email(request.email())
-               .addressId(request.addressId())
+//               .addressId(request.addressId())
                .build();
     }
 
@@ -23,8 +23,8 @@ public class StudentMapper {
                 .id(student.getId())
                 .firstName(student.getFirstName())
                 .lastName(student.getLastName())
-                .email(student.getEmail())
-                .addressId(student.getAddressId()).
+                .email(student.getEmail()).
+//                .addressId(student.getAddressId()).
                 build();
     }
 }

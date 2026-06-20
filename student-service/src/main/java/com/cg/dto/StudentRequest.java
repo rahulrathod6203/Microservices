@@ -11,9 +11,9 @@ public record StudentRequest(
         String lastName,
 
         @Column(name = "email", nullable = false)
-        String email,
+        String email
 
-        @Column(name = "address_id", nullable = false)
-        Long addressId
+//        @Column(name = "address_id", nullable = false)
+//        Long addressId
 ) {
 }

@@ -25,7 +25,7 @@ public class Student {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "address_id", nullable = false)
-    private Long addressId;
+//    @Column(name = "address_id", nullable = false)
+//    private Long addressId;
 
 }
