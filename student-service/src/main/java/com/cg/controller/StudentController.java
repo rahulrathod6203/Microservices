@@ -22,7 +22,7 @@ public class StudentController {
 
     @GetMapping("/greet")
     public String greet(){
-        return "Hello, Welcome to ......";
+        return "Hello, Welcome to ...";
     }
 
     @PostMapping
