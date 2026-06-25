@@ -26,17 +26,17 @@ public class CustomerServiceImpl implements CustomerService {
     private final AddressFeignClient addressFeignClient;
 
     @Override
-    public CustomerResponse createStudent(CustomerRequest customerRequest) {
-        log.info("Creating STUDENT...");
+    public CustomerResponse createCustomer(CustomerRequest customerRequest) {
+        log.info("Creating customer...");
         Customer customer = mapper.toEntity(customerRequest);
         Customer savedCustomer = customerRepository.save(customer);
-        log.info("STUDENT created, {}", savedCustomer.toString());
+        log.info("customer created, {}", savedCustomer.toString());
 
-        log.info("Adding STUDENT address");
+        log.info("Adding customer address");
 
         AddressResponse addressResponse =
                 addressFeignClient.createAddress(savedCustomer.getId(), customerRequest.addressRequest()).getBody();
-        log.info("Student address added {}", addressResponse);
+        log.info("customer address added {}", addressResponse);
 
 //        return StudentResponse.builder()
 //                .id(student.getId())
@@ -51,25 +51,25 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<CustomerResponse> getAllStudents() {
+    public List<CustomerResponse> getAllCustomers() {
         return null;
 //        return studentRepository.findAll().stream().map(mapper::toResponse).toList();
     }
 
     @Override
-    public CustomerResponse getStudentById(Long id) {
+    public CustomerResponse getCustomerById(Long id) {
 
         // retrieve Address By id from address-service
         AddressResponse addressById = addressFeignClient.getAddressById(id).getBody();
         return customerRepository.findById(id)
                 .map(customer -> mapper.toResponse(customer,addressById))
-                .orElseThrow(() -> new CustomerNotFoundException("Student not found with id="+id));
+                .orElseThrow(() -> new CustomerNotFoundException("Customer not found with id="+id));
     }
 
     @Override
-    public CustomerResponse updateStudent(Long id, CustomerRequest customerRequest) {
+    public CustomerResponse updateCustomer(Long id, CustomerRequest customerRequest) {
         Customer customer = customerRepository.findById(id)
-                .orElseThrow(() -> new CustomerNotFoundException("Student not found with id=" + id));
+                .orElseThrow(() -> new CustomerNotFoundException("Customer not found with id=" + id));
 
         customer.setFirstName(customerRequest.firstName());
         customer.setLastName(customerRequest.lastName());
@@ -83,12 +83,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public String deleteStudent(Long id) {
+    public String deleteCustomer(Long id) {
         customerRepository.findById(id)
-                .orElseThrow(() -> new CustomerNotFoundException("Student not found with id="+id));
+                .orElseThrow(() -> new CustomerNotFoundException("Customer not found with id="+id));
 
         customerRepository.deleteById(id);
-        return "Student with id="+id + " deleted successfully!";
+        return "Customer with id="+id + " deleted successfully!";
     }
 
 }

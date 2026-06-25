@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AddressService {
 
-    AddressResponse createAddress(Long studentId, AddressRequest addressRequest);
+    AddressResponse createAddress(Long customerId, AddressRequest addressRequest);
 
     List<AddressResponse> getAllAddress();
 

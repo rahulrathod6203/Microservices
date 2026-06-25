@@ -22,9 +22,9 @@ public class AddressController {
 
     private final AddressService addressService;
 
-    @PostMapping("/{studentId}")
-    public ResponseEntity<AddressResponse> createAddress(@PathVariable Long studentId, @RequestBody AddressRequest addressRequest) {
-        AddressResponse address = addressService.createAddress(studentId, addressRequest);
+    @PostMapping("/{customerId}")
+    public ResponseEntity<AddressResponse> createAddress(@PathVariable Long customerId, @RequestBody AddressRequest addressRequest) {
+        AddressResponse address = addressService.createAddress(customerId, addressRequest);
 
         URI location = ServletUriComponentsBuilder
                     .fromCurrentRequest()

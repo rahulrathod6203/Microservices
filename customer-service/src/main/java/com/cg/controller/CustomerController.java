@@ -13,7 +13,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/student")
+@RequestMapping("/api/v1/customer")
 @AllArgsConstructor
 public class CustomerController {
 
@@ -25,8 +25,8 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<CustomerResponse> createStudent(@RequestBody CustomerRequest customerRequest) {
-        CustomerResponse student = customerService.createStudent(customerRequest);
+    public ResponseEntity<CustomerResponse> createCustomer(@RequestBody CustomerRequest customerRequest) {
+        CustomerResponse student = customerService.createCustomer(customerRequest);
 
         URI location = ServletUriComponentsBuilder
                     .fromCurrentRequest()
@@ -38,26 +38,26 @@ public class CustomerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CustomerResponse>> getAllStudents() {
-        List<CustomerResponse> allStudents = customerService.getAllStudents();
+    public ResponseEntity<List<CustomerResponse>> getAllCustomers() {
+        List<CustomerResponse> allStudents = customerService.getAllCustomers();
         return ResponseEntity.ok(allStudents);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerResponse> getStudentById(@PathVariable Long id) {
-        CustomerResponse studentById = customerService.getStudentById(id);
+    public ResponseEntity<CustomerResponse> getCustomerById(@PathVariable Long id) {
+        CustomerResponse studentById = customerService.getCustomerById(id);
         return ResponseEntity.ok(studentById);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CustomerResponse> updateStudent(@PathVariable Long id, @RequestBody CustomerRequest customerRequest) {
-        CustomerResponse customerResponse = customerService.updateStudent(id, customerRequest);
+    public ResponseEntity<CustomerResponse> updateCustomer(@PathVariable Long id, @RequestBody CustomerRequest customerRequest) {
+        CustomerResponse customerResponse = customerService.updateCustomer(id, customerRequest);
         return ResponseEntity.accepted().body(customerResponse);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteStudent( @PathVariable Long id) {
-        return customerService.deleteStudent(id);
+    public String deleteCustomer(@PathVariable Long id) {
+        return customerService.deleteCustomer(id);
     }
 
 

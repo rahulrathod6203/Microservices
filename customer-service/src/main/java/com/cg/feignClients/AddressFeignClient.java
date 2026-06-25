@@ -11,8 +11,8 @@ import java.util.List;
 @FeignClient(name = "ADDRESS-SERVICE", path = "/api/v1/address")
 public interface AddressFeignClient {
 
-    @PostMapping("/{studentId}")
-    public ResponseEntity<AddressResponse> createAddress(@PathVariable Long studentId, @RequestBody AddressRequest addressRequest);
+    @PostMapping("/{customerId}")
+    public ResponseEntity<AddressResponse> createAddress(@PathVariable Long customerId, @RequestBody AddressRequest addressRequest);
 
     @GetMapping
     public ResponseEntity<List<AddressResponse>> getAllAddress();

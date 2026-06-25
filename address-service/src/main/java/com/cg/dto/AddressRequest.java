@@ -13,6 +13,6 @@ public record AddressRequest(
 
         String state,
 
-        Long studentId
+        Long customerId
 ) {
 }

@@ -1,6 +1,5 @@
 package com.cg.dto;
 
-import jakarta.persistence.Column;
 import lombok.Builder;
 
 @Builder
@@ -16,6 +15,6 @@ public record AddressResponse(
 
         String state,
 
-        Long studentId
+        Long customerId
 ) {
 }

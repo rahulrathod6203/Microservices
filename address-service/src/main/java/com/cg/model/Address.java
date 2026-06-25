@@ -28,7 +28,7 @@ public class Address {
     @Column(name = "state", nullable = false)
     private String state;
 
-    @Column(name = "student_id", nullable = false)
-    private Long studentId;
+    @Column(name = "customer_id", nullable = false)
+    private Long customerId;
 
 }

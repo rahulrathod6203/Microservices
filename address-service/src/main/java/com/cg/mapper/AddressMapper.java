@@ -15,7 +15,7 @@ public class AddressMapper {
                .city(request.city())
                .pinCode(request.pinCode())
                .state(request.state())
-               .studentId(request.studentId())
+               .customerId(request.customerId())
                .build();
     }
 
@@ -26,7 +26,7 @@ public class AddressMapper {
                 .city(address.getCity())
                 .pinCode(address.getPinCode())
                 .state(address.getState())
-                .studentId(address.getStudentId())
+                .customerId(address.getCustomerId())
                 .build();
     }
 }

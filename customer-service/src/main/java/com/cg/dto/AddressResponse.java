@@ -1,7 +1,11 @@
 package com.cg.dto;
 
-public record AddressRequest(
+import lombok.Builder;
 
+@Builder
+public record AddressResponse(
+
+        Long id,
 
         String street,
 
@@ -11,6 +15,6 @@ public record AddressRequest(
 
         String state,
 
-        Long studentId
+        Long customerId
 ) {
 }
