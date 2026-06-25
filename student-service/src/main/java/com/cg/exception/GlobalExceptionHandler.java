@@ -12,8 +12,8 @@ import java.time.Instant;
 public class GlobalExceptionHandler {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(StudentNotFoundException.class)
-    public ExceptionResponse studentNotFoundExceptionHandler(WebRequest request, StudentNotFoundException exception){
+    @ExceptionHandler(CustomerNotFoundException.class)
+    public ExceptionResponse studentNotFoundExceptionHandler(WebRequest request, CustomerNotFoundException exception){
 
         String trimmedPath = request.getDescription(false).replace("uri=","");
         return ExceptionResponse.builder()
