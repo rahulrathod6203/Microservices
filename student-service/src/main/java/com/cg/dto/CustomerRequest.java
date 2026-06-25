@@ -1,8 +1,6 @@
 package com.cg.dto;
 
-import jakarta.persistence.Column;
-
-public record StudentRequest(
+public record CustomerRequest(
 
 
         String firstName,

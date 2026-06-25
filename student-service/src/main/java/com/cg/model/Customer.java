@@ -1,6 +1,5 @@
 package com.cg.model;
 
-import com.cg.dto.AddressResponse;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Student {
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
