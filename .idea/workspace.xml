@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="722e568b-c1ab-448c-913a-c95a385e9ec1" name="Changes" comment="" />
+    <list default="true" id="722e568b-c1ab-448c-913a-c95a385e9ec1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/address-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/address-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-registry/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service-registry/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/student-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/student-service/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,9 +29,10 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "feat/actuator",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Microservices/Microservices",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
